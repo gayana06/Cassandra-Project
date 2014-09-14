@@ -1,0 +1,21 @@
+Cassandra
+----------------
+Show tables command = describe tables;
+Delete all records = truncate table;
+
+Stopping Cassandra as a Stand-Alone Process¶
+
+To stop the Cassandra process, find the Cassandra Java process ID (PID), and then kill the process using its PID number:
+
+$ ps auwx | grep cassandra
+$ sudo kill <pid>
+
+
+install Opscenter
+---------------------
+http://www.datastax.com/documentation/opscenter/5.0/opsc/install/opscInstallDeb_t.html
+
+Install Opscenter agents
+---------------------------
+http://www.datastax.com/documentation/opscenter/5.0/opsc/install/opscManualInstallAgentPkgDeb.html
+

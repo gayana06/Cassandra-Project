@@ -1,0 +1,27 @@
+Remove openjdk
+sudo apt-get purge openjdk*
+
+Open iptable ports
+ptables -A INPUT -p tcp --dport 7000 -j ACCEPT
+
+Give permission to a folder
+sudo chown -R chathuri /var/log/cassandra
+
+Install JDK 7
+> cd /usr/local
+> tar xzf <the file you just downloaded>
+As your normal user, add or change these two lines in your ~/.profile to point to the installation;
+
+export JAVA_HOME=/usr/local/jdk1.7.0_13
+export PATH=$PATH:$JAVA_HOME/bin
+If it's an update, you may also want to remove the old java installation directory in /usr/local.
+
+Log out and in again (or do . ~/.profile), and everything should just work.
+
+Disable overlay scroll bar
+-----------------------------
+gsettings set org.gnome.desktop.interface ubuntu-overlay-scrollbars false
+
+
+
+

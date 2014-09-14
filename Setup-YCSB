@@ -1,0 +1,59 @@
+How to configure YCSB
+---------------------------
+1) Download the YCSB compiled package from https://github.com/downloads/brianfrankcooper/YCSB/ycsb-0.1.4.tar.gz
+2) Unzip the file.
+3) Using git commands clone the branch cassandracql. Below is the url
+   https://github.com/cmatser/YCSB/tree/cassandracql 
+   (command - git clone -b cassandracql https://github.com/cmatser/YCSB.git)
+
+4) Then use below two commands to go to the YCSB folder and build using Maven.
+cd YCSB
+mvn clean package
+
+5) Once the above packge built successfully, 
+copy the content in YCSB/bin to ycsb-0.1.4/bin. 
+copy the jar file at YCSB/cassandra/target/cassandra-binding-0.1.4.jar to ycsb-0.1.4/cassandra-binding/lib 
+
+6) Now code base is ready to run.
+
+7) Now run cassandra and use below three cql commands to create the keyspace and tables required.
+
+ cqlsh> create keyspace ycsb
+     WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor': 1 };
+
+ cqlsh>use ycsb;
+
+ cqlsh:ycsb> create table usertable (
+     y_id varchar primary key,
+     field0 varchar,
+     field1 varchar,
+     field2 varchar,
+     field3 varchar,
+     field4 varchar,
+     field5 varchar,
+     field6 varchar,
+     field7 varchar,
+     field8 varchar,
+     field9 varchar);
+
+8) Now use the below command to load the dataset to Cassandra
+
+cd ycsb-0.1.4
+
+./bin/ycsb load cassandra-cql -p host="localhost"  -p port=9042 -P workloads/workloada
+
+9) Once the above step is done, run the transactions using below command
+
+./bin/ycsb run cassandra-cql -p host="localhost" -p port=9042  -P workloads/workloada -s > result.dat
+
+10) Now check the ycsb-0.1.4 folder and find the result.dat file with all the test result details.
+
+11) Big smile.............:D :D :D
+
+References
+---------------
+1) https://github.com/brianfrankcooper/YCSB/wiki/Getting-Started
+2) https://github.com/brianfrankcooper/YCSB/wiki/Using-the-Database-Libraries
+3) https://github.com/brianfrankcooper/YCSB/issues/154
+4) https://github.com/brianfrankcooper/YCSB/wiki/Running-a-Workload
+
