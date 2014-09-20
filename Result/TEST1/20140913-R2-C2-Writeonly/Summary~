@@ -1,0 +1,7 @@
+AWS EC2 micro instance
+--------------------------
+Replication factor = 2
+cluster node count = 2
+Operations = 300000
+Read/Write = 100/00
+ 
